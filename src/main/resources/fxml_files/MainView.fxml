@@ -10,13 +10,13 @@
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fcmanagement.controllers.MainViewController">
     <!-- Top Header -->
     <top>
-        <HBox spacing="10" padding="10" style="-fx-background-color: #2E3A4F;">
-            <Label text="Dashboard" style="-fx-text-fill: white; -fx-font-size: 18px;"/>
-        </HBox>
+        <HBox style="-fx-background-color: #2E3A4F;" alignment="CENTER">
+		    <Label text="DASHBOARD" style="-fx-text-fill: white; -fx-font-size: 40px;" />
+		</HBox>
     </top>
     <!-- Left Sidebar -->
     <left>
-        <VBox spacing="10" padding="10" style="-fx-background-color: #3A4D6D;">
+        <VBox spacing="10" style="-fx-background-color: #3A4D6D; -fx-padding: 10;">
             <Button text="Home" />
             <Button text="Profile" />
             <Button text="Settings" />
@@ -25,11 +25,11 @@
     </left>
     <!-- Main Content Area -->
     <center>
-        <VBox spacing="10" padding="10">
+        <VBox spacing="10" style="-fx-padding: 20;">
             <HBox spacing="10">
-                <Label text="Welcome to the Dashboard!" style="-fx-font-size: 24px;"/>
+                <Label text="Welcome to the Dashboard!" style="-fx-font-size: 25px;" />
             </HBox>
-            <ListView fx:id="listView"/>
+            <ListView fx:id="listView" />
         </VBox>
     </center>
 </BorderPane>
