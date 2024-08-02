@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+HBox {
+    -fx-padding: 10;
+    -fx-background-color: #2E3A4F;
+}
+
+VBox {
+    -fx-padding: 10;
+    -fx-background-color: #3A4D6D;
+}
+
+Label {
+    -fx-text-fill: white;
+}
+
+Button {
+    -fx-text-fill: white;
+    -fx-background-color: #4A6D8C;
+    -fx-border-color: #2E3A4F;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
