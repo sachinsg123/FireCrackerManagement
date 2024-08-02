@@ -8,7 +8,9 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
+
 import java.io.IOException;
+
 import java.net.URL;
 
 import org.springframework.stereotype.Controller;
@@ -37,6 +39,7 @@ public class MainViewController {
         loadNewScene("/fxml_files/ProfileView.fxml");
     }
     
+
 //    @FXML
 //    private void handlePurchaseBill() {
 //        // Add your logic for handling Purchase Bill here
@@ -126,6 +129,7 @@ public class MainViewController {
         System.out.println("Inventory Report clicked");
         // Add your logic here
     }
+
     
     private void loadNewScene(String fxmlFile) {
         try {
