@@ -17,10 +17,10 @@
     <!-- Left Sidebar -->
     <left>
         <VBox spacing="10" style="-fx-background-color: #3A4D6D; -fx-padding: 10;">
-            <Button text="Home" />
-            <Button text="Profile" />
-            <Button text="Settings" />
-            <Button text="Logout" />
+            <Button fx:id="dashboardButton" text="Dashboard" style="-fx-font-size: 15px;" />
+            <Button fx:id="profileButton" text="Profile" style="-fx-font-size: 15px;" />
+            <Button text="Settings" style="-fx-font-size: 15px;" />
+            <Button text="Logout" style="-fx-font-size: 15px;" />
         </VBox>
     </left>
     <!-- Main Content Area -->
