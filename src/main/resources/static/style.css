@@ -1,23 +1,83 @@
-@charset "UTF-8";
-
-HBox {
-    -fx-padding: 10;
+#loginButton {
     -fx-background-color: #2E3A4F;
-}
-
-VBox {
-    -fx-padding: 10;
-    -fx-background-color: #3A4D6D;
-}
-
-Label {
     -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-padding: 5px 15px;
+    -fx-background-radius: 5px;
+    -fx-border-color: #1C2B39;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+.imageView {
+    -fx-clip-shape: "M 40 0 A 40 40 0 1 0 40 80 A 40 40 0 1 0 40 0"; /* Path for a circle */
+    -fx-shape: "M 40 0 A 40 40 0 1 0 40 80 A 40 40 0 1 0 40 0"; /* Shape for hit detection */
 }
 
-Button {
-    -fx-text-fill: white;
-    -fx-background-color: #4A6D8C;
-    -fx-border-color: #2E3A4F;
-    -fx-border-radius: 5;
+/* Outer border and background for the main container */
+.outer-border {
+    -fx-background-color: #f0f4f7; /* Light background */
+    -fx-padding: 100;               /* Padding inside the border */
+    -fx-border-color: #cccccc;     /* Light gray border color */
+    -fx-border-width: 4;           /* Border width */
+    -fx-border-radius: 10;         /* Rounded corners for the border */
+    -fx-background-radius: 10;     /* Rounded corners for the background */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0.5, 0, 0); /* Drop shadow */
+}
+
+/* Style for the welcome label */
+.welcome-label {
+    -fx-font-size: 35px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333;
+    -fx-padding-bottom: 10; /* Extra space below the welcome text */
+}
+
+/* Common style for form labels */
+.form-label {
+    -fx-font-size: 20px;
+    -fx-text-fill: #555;
+    -fx-font-weight: bold;
+}
+
+/* Common style for input fields */
+.input-field {
+    -fx-pref-width: 300;
+    -fx-padding: 5;
+    -fx-border-color: #ccc;
+    -fx-border-width: 1;
     -fx-background-radius: 5;
+    -fx-border-radius: 5;
 }
+
+/* Styling for form fields container */
+.form-field {
+    -fx-alignment: CENTER; /* Align label and field to the left */
+    -fx-font-size: 15px;
+}
+
+/* Style for the login button */
+.login-button {
+    -fx-background-color: #2E3A4F;
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-padding: 10px 30px;
+    -fx-background-radius: 5px;
+    -fx-border-color: #1C2B39;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+.login-button:hover {
+    -fx-background-color: #4A5A6D;
+}
+
+.login-button:pressed {
+    -fx-background-color: #1C2B39;
+}
+
+/* Style for the message label (error messages) */
+.message-label {
+    -fx-text-fill: red;
+    -fx-font-size: 12px;
+    -fx-padding-top: 10; /* Space above the message label */
+}
+

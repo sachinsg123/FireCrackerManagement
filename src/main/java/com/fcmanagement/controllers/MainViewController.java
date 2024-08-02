@@ -6,7 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
-
 import java.net.URL;
 
 import org.springframework.stereotype.Controller;
@@ -31,6 +30,8 @@ public class MainViewController {
     private void handleProfileButton() {
         loadNewScene("/fxml_files/ProfileView.fxml");
     }
+    
+    
     
     private void loadNewScene(String fxmlFile) {
         try {
