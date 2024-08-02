@@ -30,6 +30,7 @@ public class MainApplication extends Application{
     }
 	@Override
 	public void start(Stage primaryStage) throws Exception{
+	//	System.out.println();
 		try {
 			URL fxmlLocation = getClass().getResource("/fxml_files/MainView.fxml");
 			FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
@@ -43,6 +44,7 @@ public class MainApplication extends Application{
             System.err.println("Failed to load FXML file.");
         }
 	}
+	
 	
 	@Override
     public void stop() throws Exception {
