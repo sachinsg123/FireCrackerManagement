@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<<<<<<< HEAD
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fcmanagement.controllers.MainViewController">
@@ -33,3 +34,34 @@
         </VBox>
     </center>
 </BorderPane>
+=======
+
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fcmanagement.controllers.MainViewController">
+    <!-- Top Header -->
+    <top>
+        <HBox style="-fx-background-color: #2E3A4F;" alignment="CENTER">
+		    <Label text="DASHBOARD" style="-fx-text-fill: white; -fx-font-size: 40px;" />
+		</HBox>
+    </top>
+    <!-- Left Sidebar -->
+    <left>
+        <VBox spacing="10" style="-fx-background-color: #3A4D6D; -fx-padding: 10;">
+            <Button fx:id="dashboardButton" text="Dashboard" style="-fx-font-size: 15px;" />
+            <Button fx:id="profileButton" text="Profile" style="-fx-font-size: 15px;" />
+            <Button text="Settings" style="-fx-font-size: 15px;" />
+            <Button text="Logout" style="-fx-font-size: 15px;" />
+        </VBox>
+    </left>
+    <!-- Main Content Area -->
+    <center>
+        <VBox spacing="10" style="-fx-padding: 20;">
+            <HBox spacing="10">
+                <Label text="Welcome to the Dashboard!" style="-fx-font-size: 25px;" />
+            </HBox>
+            <ListView fx:id="listView" />
+        </VBox>
+    </center>
+</BorderPane>
+>>>>>>> branch 'master' of https://github.com/sachinsg123/FireCrackerManagement.git
