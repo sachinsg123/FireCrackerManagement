@@ -1,0 +1,141 @@
+[1mdiff --git a/pom.xml b/pom.xml[m
+[1mindex 6beaccc..001ea32 100644[m
+[1m--- a/pom.xml[m
+[1m+++ b/pom.xml[m
+[36m@@ -1,45 +1,57 @@[m
+ <?xml version="1.0" encoding="UTF-8"?>[m
+[31m-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"[m
+[32m+[m[32m<project xmlns="http://maven.apache.org/POM/4.0.0"[m
+[32m+[m	[32mxmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"[m
+ 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">[m
+ 	<modelVersion>4.0.0</modelVersion>[m
+ 	<parent>[m
+ 		<groupId>org.springframework.boot</groupId>[m
+ 		<artifactId>spring-boot-starter-parent</artifactId>[m
+ 		<version>3.3.2</version>[m
+[31m-		<relativePath/> <!-- lookup parent from repository -->[m
+[32m+[m		[32m<relativePath /> <!-- lookup parent from repository -->[m
+ 	</parent>[m
+ 	<groupId>com.fcmanagement</groupId>[m
+ 	<artifactId>FireCrackerManagement</artifactId>[m
+ 	<version>0.0.1-SNAPSHOT</version>[m
+ 	<name>FireCrackerManagement</name>[m
+ 	<description>project for file crackers management</description>[m
+[31m-	<url/>[m
+[32m+[m	[32m<url />[m
+ 	<licenses>[m
+[31m-		<license/>[m
+[32m+[m		[32m<license />[m
+ 	</licenses>[m
+ 	<developers>[m
+[31m-		<developer/>[m
+[32m+[m		[32m<developer />[m
+ 	</developers>[m
+ 	<scm>[m
+[31m-		<connection/>[m
+[31m-		<developerConnection/>[m
+[31m-		<tag/>[m
+[31m-		<url/>[m
+[32m+[m		[32m<connection />[m
+[32m+[m		[32m<developerConnection />[m
+[32m+[m		[32m<tag />[m
+[32m+[m		[32m<url />[m
+ 	</scm>[m
+ 	<properties>[m
+ 		<java.version>17</java.version>[m
+ 	</properties>[m
+ 	<dependencies>[m
+[32m+[m
+[32m+[m		[32m<dependency>[m
+[32m+[m			[32m<groupId>org.eclipse.platform</groupId>[m
+[32m+[m			[32m<artifactId>org.eclipse.jface</artifactId>[m
+[32m+[m			[32m<version>3.18.0</version>[m
+[32m+[m		[32m</dependency>[m
+[32m+[m		[32m  <dependency>[m
+[32m+[m[32m        <groupId>org.eclipse.platform</groupId>[m
+[32m+[m[32m        <artifactId>org.eclipse.swt</artifactId>[m
+[32m+[m[32m        <version>3.118.0</version>[m
+[32m+[m[41m     [m	[32m</dependency>[m
+ 		<dependency>[m
+[31m-        <groupId>org.openjfx</groupId>[m
+[31m-        <artifactId>javafx-controls</artifactId>[m
+[31m-        <version>16</version>[m
+[31m-    </dependency>[m
+[31m-    <dependency>[m
+[31m-        <groupId>org.openjfx</groupId>[m
+[31m-        <artifactId>javafx-fxml</artifactId>[m
+[31m-        <version>16</version>[m
+[31m-    </dependency>[m
+[32m+[m			[32m<groupId>org.openjfx</groupId>[m
+[32m+[m			[32m<artifactId>javafx-controls</artifactId>[m
+[32m+[m			[32m<version>16</version>[m
+[32m+[m		[32m</dependency>[m
+[32m+[m		[32m<dependency>[m
+[32m+[m			[32m<groupId>org.openjfx</groupId>[m
+[32m+[m			[32m<artifactId>javafx-fxml</artifactId>[m
+[32m+[m			[32m<version>16</version>[m
+[32m+[m		[32m</dependency>[m
+ 		<dependency>[m
+ 			<groupId>org.springframework.boot</groupId>[m
+ 			<artifactId>spring-boot-starter-web</artifactId>[m
+[1mdiff --git a/src/main/java/com/fcmanagement/MainApplication.java b/src/main/java/com/fcmanagement/MainApplication.java[m
+[1mindex a93e3d5..bece360 100644[m
+[1m--- a/src/main/java/com/fcmanagement/MainApplication.java[m
+[1m+++ b/src/main/java/com/fcmanagement/MainApplication.java[m
+[36m@@ -7,6 +7,12 @@[m [mimport javafx.application.Application;[m
+ import javafx.fxml.FXMLLoader;[m
+ import javafx.scene.Parent;[m
+ import javafx.scene.Scene;[m
+[32m+[m[32mimport javafx.scene.control.Button;[m
+[32m+[m[32mimport javafx.scene.control.Label;[m
+[32m+[m[32mimport javafx.scene.control.ListView;[m
+[32m+[m[32mimport javafx.scene.layout.BorderPane;[m
+[32m+[m[32mimport javafx.scene.layout.HBox;[m
+[32m+[m[32mimport javafx.scene.layout.VBox;[m
+ import javafx.stage.Stage;[m
+ [m
+ public class MainApplication extends Application{[m
+[36m@@ -27,7 +33,42 @@[m [mpublic class MainApplication extends Application{[m
+         primaryStage.setTitle("JavaFX and Spring Boot FireCracker application");[m
+         primaryStage.setScene(new Scene(root));[m
+         primaryStage.show();[m
+[31m-		[m
+[32m+[m		[32m// Top Header[m
+[32m+[m[32m//        HBox topHeader = new HBox(10);[m
+[32m+[m[32m//        topHeader.setStyle("-fx-background-color: #2E3A4F;");[m
+[32m+[m[32m//        Label dashboardLabel = new Label("Dashboard");[m
+[32m+[m[32m//        dashboardLabel.setStyle("-fx-text-fill: white; -fx-font-size: 18px;");[m
+[32m+[m[32m//        topHeader.getChildren().add(dashboardLabel);[m
+[32m+[m[32m//[m
+[32m+[m[32m//        // Left Sidebar[m
+[32m+[m[32m//        VBox leftSidebar = new VBox(10);[m
+[32m+[m[32m//        leftSidebar.setStyle("-fx-background-color: #3A4D6D;");[m
+[32m+[m[32m//        Button homeButton = new Button("Home");[m
+[32m+[m[32m//        Button profileButton = new Button("Profile");[m
+[32m+[m[32m//        Button settingsButton = new Button("Settings");[m
+[32m+[m[32m//        Button logoutButton = new Button("Logout");[m
+[32m+[m[32m//        leftSidebar.getChildren().addAll(homeButton, profileButton, settingsButton, logoutButton);[m
+[32m+[m[32m//[m
+[32m+[m[32m//        // Main Content Area[m
+[32m+[m[32m//        VBox mainContent = new VBox(10);[m
+[32m+[m[32m//        mainContent.setPadding(new javafx.geometry.Insets(10));[m
+[32m+[m[32m//        Label welcomeLabel = new Label("Welcome to the Dashboard!");[m
+[32m+[m[32m//        welcomeLabel.setStyle("-fx-font-size: 24px;");[m
+[32m+[m[32m//        ListView<String> listView = new ListView<>();[m
+[32m+[m[32m//        mainContent.getChildren().addAll(welcomeLabel, listView);[m
+[32m+[m[32m//[m
+[32m+[m[32m//        // Main Layout[m
+[32m+[m[32m//        BorderPane mainLayout = new BorderPane();[m
+[32m+[m[32m//        mainLayout.setTop(topHeader);[m
+[32m+[m[32m//        mainLayout.setLeft(leftSidebar);[m
+[32m+[m[32m//        mainLayout.setCenter(mainContent);[m
+[32m+[m[32m//[m
+[32m+[m[32m//        // Scene and Stage[m
+[32m+[m[32m//        Scene scene = new Scene(mainLayout, 800, 600);[m
+[32m+[m[32m//        primaryStage.setScene(scene);[m
+[32m+[m[32m//        primaryStage.setTitle("Dashboard");[m
+[32m+[m[32m//        primaryStage.show();[m
+[32m+[m[32m//[m[41m		[m
+ 	}[m
+ 	[m
+ 	@Override[m
