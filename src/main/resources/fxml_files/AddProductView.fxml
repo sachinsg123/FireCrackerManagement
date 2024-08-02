@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/22" fx:controller="com.fcmanagement.controllers.AddProductController" spacing="10" alignment="CENTER" style="-fx-padding: 20;">
+    <Label text="Add New Product" style="-fx-font-size: 20px;"/>
+    <TextField fx:id="productNameField" promptText="Product Name" />
+    <TextField fx:id="productPriceField" promptText="Product Price" />
+    <TextField fx:id="productQuantityField" promptText="Product Quantity" />
+    <TextField fx:id="productUnitField" promptText="Product Unit" />
+    <TextField fx:id="productSizeField" promptText="Product Size" />
+    <Button text="Add Product" onAction="handleAddProduct"/>
+</VBox>

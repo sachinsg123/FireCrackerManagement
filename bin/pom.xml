@@ -31,6 +31,38 @@
 	</properties>
 	<dependencies>
 		<dependency>
+<<<<<<< HEAD
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-controls</artifactId>
+        <version>16</version>
+    </dependency>
+    <dependency>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-fxml</artifactId>
+        <version>16</version>
+    </dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+=======
 	        <groupId>org.openjfx</groupId>
 	        <artifactId>javafx-controls</artifactId>
 	        <version>16</version>
@@ -78,6 +110,7 @@
 		    <version>3.25.0</version>
 		</dependency>
 
+>>>>>>> branch 'master' of https://github.com/sachinsg123/FireCrackerManagement.git
 	</dependencies>
 
 	<build>
