@@ -8,6 +8,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -16,6 +17,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class MainApplication extends Application {
@@ -30,15 +32,20 @@ public class MainApplication extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		// System.out.println();
-//System.out.println();
 		try {
-			URL fxmlLocation = getClass().getResource("/fxml_files/MainView.fxml");
+			URL fxmlLocation = getClass().getResource("/fxml_files/LoginView.fxml");
 			FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
 			fxmlLoader.setControllerFactory(springContext::getBean);
 			Parent root = fxmlLoader.load();
-			primaryStage.setTitle("JavaFX and Spring Boot FireCracker application");
-			primaryStage.setScene(new Scene(root));
+			Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+		    
+		    Scene scene = new Scene(root, primaryScreenBounds.getWidth(), primaryScreenBounds.getHeight());
+			scene.getStylesheets().add(getClass().getResource("/static/style.css").toExternalForm());
+			primaryStage.setTitle("FireCracker Desktop Application");
+			primaryStage.setScene(scene);
+		    primaryStage.setWidth(primaryScreenBounds.getWidth());
+		    primaryStage.setHeight(primaryScreenBounds.getHeight());
+		    primaryStage.setMaximized(true);
 			primaryStage.show();
 		} catch (IOException e) {
 			e.printStackTrace();
