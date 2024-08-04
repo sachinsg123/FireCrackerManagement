@@ -18,7 +18,7 @@
     <!-- Top Header -->
     <top>
         <HBox style="-fx-background-color: #2E3A4F;" alignment="CENTER">
-            <StackPane>
+            <StackPane styleClass="rounded-image">
                 <ImageView fitHeight="30" fitWidth="30">
                     <image>
                         <Image url="@/Images/a2zimage.jpeg" />
@@ -37,7 +37,7 @@
 
             <Region HBox.hgrow="ALWAYS" />
 
-            <Button text="Create Account" onAction="#handleCreateAccount" style="-fx-background-color: #4CAF50; -fx-text-fill: white;">
+            <Button text="Create Account" onAction="#handleCreateAccount" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-cursor: hand;">
                 <HBox.margin>
                     <Insets top="5" right="55" bottom="5" left="5"/>
                 </HBox.margin>
@@ -47,7 +47,7 @@
 
     <!-- Main Content Area -->
     <center>
-        <VBox spacing="20" alignment="CENTER" styleClass="outer-border">
+        <VBox spacing="20" alignment="CENTER" styleClass="outer-border" >
             <Label text="LOGIN" styleClass="welcome-label" />
             
             <HBox spacing="10" styleClass="form-field">
@@ -60,7 +60,18 @@
                 <PasswordField fx:id="passwordField" promptText="Enter your password" styleClass="input-field"/>
             </HBox>
             
-            <Button text="Login" onAction="#handleLogin" styleClass="login-button"/>
+            <HBox alignment="CENTER">
+	            <Button text="Login" onAction="#handleLogin" styleClass="login-button" style="-fx-cursor: hand;">
+		            <HBox.margin>
+	                    <Insets top="0" right="0" bottom="0" left="0"/>
+	                </HBox.margin>
+	            </Button>
+	            <Button text="Forgot Password" onAction="#handleForgotPassword" styleClass="login-button" style="-fx-cursor: hand;">
+		            <HBox.margin>
+	                    <Insets top="0" right="0" bottom="0" left="15"/>
+	                </HBox.margin>
+	            </Button>
+            </HBox>
             <Label fx:id="messageLabel" styleClass="message-label"/>
         </VBox>
     </center>
