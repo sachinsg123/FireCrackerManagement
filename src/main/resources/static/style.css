@@ -8,23 +8,28 @@
     -fx-border-width: 2px;
     -fx-border-radius: 5px;
 }
-.imageView {
-    -fx-clip-shape: "M 40 0 A 40 40 0 1 0 40 80 A 40 40 0 1 0 40 0"; /* Path for a circle */
-    -fx-shape: "M 40 0 A 40 40 0 1 0 40 80 A 40 40 0 1 0 40 0"; /* Shape for hit detection */
+.rounded-image {
+    -fx-background-radius: 15;
+    -fx-background-color: transparent;
 }
 
-/* Outer border and background for the main container */
+.rounded-image > ImageView {
+    -fx-clip: circle(15px at center);
+}
+
 .outer-border {
-    -fx-background-color: #f0f4f7; /* Light background */
-    -fx-padding: 100;               /* Padding inside the border */
+    -fx-background-color: white; /* Light background */
+    -fx-padding: 20px;             /* Padding inside the border */
     -fx-border-color: #cccccc;     /* Light gray border color */
-    -fx-border-width: 4;           /* Border width */
-    -fx-border-radius: 10;         /* Rounded corners for the border */
-    -fx-background-radius: 10;     /* Rounded corners for the background */
+    -fx-border-width: 4px;      /* Rounded corners for the border */
+    -fx-background-radius: 10px;   /* Rounded corners for the background */
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0.5, 0, 0); /* Drop shadow */
+    
+    /* Set width and height */
+    -fx-max-width: 500px;          /* Maximum width */
+    -fx-max-height: 500px;         /* Maximum height */
 }
 
-/* Style for the welcome label */
 .welcome-label {
     -fx-font-size: 35px;
     -fx-font-weight: bold;
@@ -80,4 +85,5 @@
     -fx-font-size: 12px;
     -fx-padding-top: 10; /* Space above the message label */
 }
+
 
