@@ -4,11 +4,21 @@ import java.io.File;
 import java.io.IOException;
 import java.util.regex.Pattern;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.fcmanagement.model.User;
+import com.fcmanagement.repositories.UserRepository;
+
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -23,15 +33,21 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
+import javafx.stage.Popup;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 @Component
 public class LoginViewController {
 
+	@Autowired
+	private UserRepository userRepository;
+	
     @FXML
-    private TextField usernameField;
+    private TextField emailField;
 
     @FXML
     private PasswordField passwordField;
@@ -40,11 +56,20 @@ public class LoginViewController {
     private Label messageLabel;
     
     @FXML
+    private Label userMessage;
+    
+    @FXML
     private void handleLogin() {
-        String username = usernameField.getText();
+        String email = emailField.getText();
         String password = passwordField.getText();
-
-        if ("admin".equals(username) && "123".equals(password)) {
+        
+        User user = userRepository.findByEmail(email);
+        if(user == null) {
+        	messageLabel.setText("User Not Found !!!");
+            messageLabel.setStyle("-fx-text-fill: red;");
+        }
+        
+        if (user.getPassword().equals(password)) {
             messageLabel.setText("Login successful!");
             messageLabel.setStyle("-fx-text-fill: green;");
             try {
@@ -52,7 +77,7 @@ public class LoginViewController {
                 Parent dashbord = loader.load();
                 
                 Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
-                Stage stage = (Stage) usernameField.getScene().getWindow();
+                Stage stage = (Stage) emailField.getScene().getWindow();
                 Scene scene = new Scene(dashbord, primaryScreenBounds.getWidth(), primaryScreenBounds.getHeight());
                 stage.setScene(scene);
                 stage.show();
@@ -62,7 +87,7 @@ public class LoginViewController {
                 messageLabel.setStyle("-fx-text-fill: red;");
             }
         } else {
-            messageLabel.setText("Invalid username or password");
+            messageLabel.setText("Invalid Password");
             messageLabel.setStyle("-fx-text-fill: red;");
         }
     }
@@ -73,6 +98,9 @@ public class LoginViewController {
     	primaryStage.setTitle("Create Account");
 
         // Create form components
+    	Label alert = new Label("* Indicates Mandatory Fields");
+    	alert.setStyle("-fx-font-weight: bold; -fx-font-size: 12px;");
+    	
         Label usernameLabel = new Label("UserName*");
         usernameLabel.setStyle("-fx-font-weight: bold;");
         TextField username = new TextField();
@@ -138,7 +166,7 @@ public class LoginViewController {
 
 
         // Submit button action
-        submitButton.setOnAction(e -> handleSubmit());
+        submitButton.setOnAction(e -> handleSubmit(username, companyName, emailField, mobileField, password, e));
 
         // Cancel button action
         cancelButton.setOnAction(e -> primaryStage.close());
@@ -149,31 +177,64 @@ public class LoginViewController {
         gridPane.setVgap(10);
         gridPane.setHgap(10);
 
-        gridPane.add(usernameLabel, 0, 1);
-        gridPane.add(username, 1, 1);
-        gridPane.add(companyNameLabel, 0, 3);
-        gridPane.add(companyName, 1, 3);
-        gridPane.add(emailLabel, 0, 5);
-        gridPane.add(emailField, 1, 5);
-        gridPane.add(mobileLabel, 0, 7);
-        gridPane.add(mobileField, 1, 7);
-        gridPane.add(imageLabel, 0, 9);
-        gridPane.add(uploadImageButton, 1, 9); gridPane.add(imageView, 2, 9);
-        gridPane.add(passwordLabel, 0, 11);
-        gridPane.add(password, 1, 11);
+        gridPane.add(alert, 0, 1);
+        gridPane.add(usernameLabel, 0, 3);
+        gridPane.add(username, 1, 3);
+        gridPane.add(companyNameLabel, 0, 5);
+        gridPane.add(companyName, 1, 5);
+        gridPane.add(emailLabel, 0, 7);
+        gridPane.add(emailField, 1, 7);
+        gridPane.add(mobileLabel, 0, 9);
+        gridPane.add(mobileField, 1, 9);
+        gridPane.add(imageLabel, 0, 11);
+        gridPane.add(uploadImageButton, 1, 11); gridPane.add(imageView, 2, 11);
+        gridPane.add(passwordLabel, 0, 13);
+        gridPane.add(password, 1, 13);
 
         HBox buttonBox = new HBox(10, submitButton, cancelButton);
         buttonBox.setPadding(new Insets(10, 0, 0, 0));
-        gridPane.add(buttonBox, 1, 14);
+        gridPane.add(buttonBox, 1, 20);
 
-        Scene scene = new Scene(new VBox(gridPane), 400, 500);
+        Scene scene = new Scene(new VBox(gridPane), 500, 600);
         primaryStage.setResizable(false);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
     
-    private void handleSubmit() {
-    	//Write code for Add New User 
+    private void handleSubmit(TextField userName, TextField companyName, TextField emailField, TextField mobileField, TextField Password, javafx.event.ActionEvent event) {
+    	String username = userName.getText();
+    	String companyname = companyName.getText();
+        String email = emailField.getText();
+        String mobile = mobileField.getText();
+        String password = Password.getText();
+        //String imagePath = imageFile.toURI().toString();
+        
+        // Create a new User object
+        User user = new User();
+        user.setUsername(username);
+        user.setCompanyName(companyname);
+        user.setEmail(email);
+        user.setMobile(mobile);
+        user.setPassword(password);
+
+        //userRepository.save(user);
+        //Provide feedback to the user (e.g., display a success message)
+        
+        // Close the current stage
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        stage.close();
+        
+        userMessage.setText("User Added Successfully !!!");
+        userMessage.setStyle("-fx-text-fill: green;");
+        userMessage.setVisible(true);
+
+        // Create a timeline to hide the message after 5 seconds (5000 milliseconds)
+        Timeline timeline = new Timeline(new KeyFrame(
+            Duration.millis(2000),
+            even -> userMessage.setVisible(false)
+        ));
+        timeline.setCycleCount(1); // Execute the event only once
+        timeline.play(); // Start the timeline
     }
     
     @FXML
@@ -242,4 +303,5 @@ public class LoginViewController {
     private void handleUpdatePassword() {
     	//Write code for Update User Password
     }
+    
 }

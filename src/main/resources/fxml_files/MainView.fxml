@@ -2,14 +2,34 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/22" fx:controller="com.fcmanagement.controllers.MainViewController">
     <!-- Top Header -->
-    <top>
-        <HBox style="-fx-background-color: #2E3A4F;" alignment="CENTER">
-            <Label text="DASHBOARD" style="-fx-text-fill: white; -fx-font-size: 40px;" />
-        </HBox>
-    </top>
+	<top>
+	    <HBox style="-fx-background-color: #2E3A4F;" alignment="CENTER" spacing="10">
+	    
+		    <Pane HBox.hgrow="ALWAYS"/>
+		    <Label text="DASHBOARD" style="-fx-text-fill: white; -fx-font-size: 40px;" >
+		    	<HBox.margin>
+		            <Insets top="0" right="0" bottom="0" left="275"/>
+		        </HBox.margin>
+		    </Label>
+		    
+		    <Pane HBox.hgrow="ALWAYS"/>
+		    <Button text="View Admin Profile" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 15px; -fx-cursor: hand;">
+		        <HBox.margin>
+		            <Insets top="5" right="5" bottom="5" left="5"/>
+		        </HBox.margin>
+		    </Button>
+		    
+		    <Button text="Logout" onAction="#handleLogout" style="-fx-background-color: red; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand;">
+		        <HBox.margin>
+		            <Insets top="5" right="15" bottom="5" left="5"/>
+		        </HBox.margin>
+		    </Button>
+		</HBox>
+	</top>
     
     <!-- Left Sidebar -->
     <left>

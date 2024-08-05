@@ -45,7 +45,7 @@
 }
 
 /* Common style for input fields */
-.input-field {
+.input-field required {
     -fx-pref-width: 300;
     -fx-padding: 5;
     -fx-border-color: #ccc;
@@ -83,6 +83,11 @@
 .message-label {
     -fx-text-fill: red;
     -fx-font-size: 12px;
+    -fx-padding-top: 10; /* Space above the message label */
+}
+.userMessage {
+    -fx-text-fill: red;
+    -fx-font-size: 20px;
     -fx-padding-top: 10; /* Space above the message label */
 }
 
