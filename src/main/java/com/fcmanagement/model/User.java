@@ -1,8 +1,22 @@
 package com.fcmanagement.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "user")
 public class User {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="userId")
     private int id;
     private String username;
+    private String companyName;
     private String email;
     private String mobile;
     private String password;
@@ -10,9 +24,10 @@ public class User {
 
     public User() {}
 
-    public User(int id, String username, String password, String email, String mobile) {
+    public User(int id, String username,String companyName, String password, String email, String mobile) {
         this.id = id;
         this.username = username;
+        this.companyName = companyName;
         this.password = password;
         this.email = email;
         this.mobile = mobile;
@@ -34,7 +49,15 @@ public class User {
         this.username = username;
     }
 
-    public String getPassword() {
+    public String getCompanyName() {
+		return companyName;
+	}
+
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+
+	public String getPassword() {
         return password;
     }
 

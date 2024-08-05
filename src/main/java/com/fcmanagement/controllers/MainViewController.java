@@ -2,18 +2,18 @@ package com.fcmanagement.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
-
-
 import java.io.IOException;
-
 import java.net.URL;
-
 import org.springframework.stereotype.Controller;
+import javafx.scene.Node;
+import javafx.event.ActionEvent;
 
 @Controller
 public class MainViewController {
@@ -24,6 +24,32 @@ public class MainViewController {
     @FXML
     private BorderPane mainBorderPane;
 
+    @FXML
+    private void handleLogout(ActionEvent event) {
+        // Close the current stage
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        stage.close();
+
+        try {
+        	Stage primaryStage = new Stage();
+        	URL fxmlLocation = getClass().getResource("/fxml_files/LoginView.fxml");
+			FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
+			Parent root = fxmlLoader.load();
+			Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+		    
+		    Scene scene = new Scene(root, primaryScreenBounds.getWidth(), primaryScreenBounds.getHeight());
+			scene.getStylesheets().add(getClass().getResource("/static/style.css").toExternalForm());
+			primaryStage.setTitle("FireCracker Desktop Application");
+			primaryStage.setScene(scene);
+		    primaryStage.setWidth(primaryScreenBounds.getWidth());
+		    primaryStage.setHeight(primaryScreenBounds.getHeight());
+		    primaryStage.setMaximized(true);
+			primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
     @FXML
     public void initialize() {
         // Initialize your UI components or set up event listeners

@@ -48,11 +48,12 @@
     <!-- Main Content Area -->
     <center>
         <VBox spacing="20" alignment="CENTER" styleClass="outer-border" >
+        	<Label fx:id="userMessage" styleClass="userMessage" />
             <Label text="LOGIN" styleClass="welcome-label" />
             
             <HBox spacing="10" styleClass="form-field">
-                <Label text="UserName:" styleClass="form-label"/>
-                <TextField fx:id="usernameField" promptText="Enter your username" styleClass="input-field"/>
+                <Label text="Email:" styleClass="form-label"/>
+                <TextField fx:id="emailField" promptText="Enter your Email" styleClass="input-field"/>
             </HBox>
             
             <HBox spacing="10" styleClass="form-field">
