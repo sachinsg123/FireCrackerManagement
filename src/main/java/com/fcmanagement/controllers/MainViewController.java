@@ -2,10 +2,13 @@ package com.fcmanagement.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 
@@ -20,10 +23,44 @@ public class MainViewController {
 
     @FXML
     private ListView<String> listView;
+
+    @FXML
+	private TextField productNameField;
+
+	@FXML
+	private TextField productPriceField;
+
+	@FXML
+	private TextField productQuantityField;
+
+	@FXML
+	private TextField productUnitField;
+
+	@FXML
+	private TextField productSizeField;
+
     
     @FXML
     private BorderPane mainBorderPane;
 
+    
+    //Product Controller- Created by Younus
+    @FXML
+    private void handleAddProduct() {
+    	try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml_files/AddProductView.fxml"));
+            Parent addProductPage = loader.load();
+            
+            Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+            Stage stage = new Stage();
+            Scene scene = new Scene(addProductPage, primaryScreenBounds.getWidth(), primaryScreenBounds.getHeight());
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
     @FXML
     public void initialize() {
         // Initialize your UI components or set up event listeners
@@ -88,16 +125,26 @@ public class MainViewController {
         }
     }
 
-    @FXML
-    private void handleAddProduct() {
-        System.out.println("Add Product clicked");
-        // Add your logic here
-    }
-
+//    @FXML
+//    private void handleAddProduct() {
+//        System.out.println("Add Product clicked");
+//        // Add your logic here
+//    }
+   
+    
     @FXML
     private void handlePurchaseBill() {
         System.out.println("Purchase Bill clicked");
         // Add your logic here
+        String productName = productNameField.getText();
+		String productPrice = productPriceField.getText();
+		String productQuantity = productQuantityField.getText();
+		String productUnit = productUnitField.getText();
+		String productSize = productSizeField.getText();
+
+		// Implement your logic to add the product here
+		System.out.println("Product added: " + productName + " - " + productPrice);
+		System.out.println("Product Quantity: " + productQuantity + " Product Unit: " + productUnit + " Product Size: " + productSize);
     }
 
     @FXML
