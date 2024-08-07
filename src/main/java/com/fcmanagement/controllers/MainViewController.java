@@ -41,6 +41,31 @@ public class MainViewController {
     @FXML
     private BorderPane mainBorderPane;
 
+    @FXML
+    private void handleViewAdminProfile(ActionEvent event) {
+    	// Close the current stage
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        stage.close();
+
+        try {
+        	Stage primaryStage = new Stage();
+        	URL fxmlLocation = getClass().getResource("/fxml_files/ProfileView.fxml");
+			FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
+			Parent root = fxmlLoader.load();
+			Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+		    
+		    Scene scene = new Scene(root, primaryScreenBounds.getWidth(), primaryScreenBounds.getHeight());
+			scene.getStylesheets().add(getClass().getResource("/static/style.css").toExternalForm());
+			primaryStage.setTitle("FireCracker Desktop Application");
+			primaryStage.setScene(scene);
+		    primaryStage.setWidth(primaryScreenBounds.getWidth());
+		    primaryStage.setHeight(primaryScreenBounds.getHeight());
+		    primaryStage.setMaximized(true);
+			primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     
     //Product Controller- Created by Younus
     @FXML
@@ -85,11 +110,11 @@ public class MainViewController {
         }
     }
     
-    @FXML
-    public void initialize() {
-        // Initialize your UI components or set up event listeners
-        listView.getItems().addAll("Item 1", "Item 2", "Item 3");
-    }
+//    @FXML
+//    public void initialize() {
+//        // Initialize your UI components or set up event listeners
+//        listView.getItems().addAll("Item 1", "Item 2", "Item 3");
+//    }
     @FXML
     private void handleDashboardButton() {
         loadNewScene("/fxml_files/MainView.fxml");
