@@ -209,7 +209,15 @@ public class LoginViewController {
         String password = Password.getText();
         //String imagePath = imageFile.toURI().toString();
         
-        // Create a new User object
+        User userFound = userRepository.findByEmail(email);
+        if(userFound != null) {
+        	Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            stage.close();
+            
+            showMessage("Email Address Already Used !!!", "-fx-text-fill: red;");
+            return;
+        }
+        
         User user = new User();
         user.setUsername(username);
         user.setCompanyName(companyname);
@@ -218,38 +226,29 @@ public class LoginViewController {
         user.setPassword(password);
 
         userRepository.save(user);
-        //Provide feedback to the user (e.g., display a success message)
-        
-        // Close the current stage
+
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage.close();
-        
-        userMessage.setText("User Added Successfully !!!");
-        userMessage.setStyle("-fx-text-fill: green;");
-        userMessage.setVisible(true);
 
-        // Create a timeline to hide the message after 5 seconds (5000 milliseconds)
-        Timeline timeline = new Timeline(new KeyFrame(
-            Duration.millis(2000),
-            even -> userMessage.setVisible(false)
-        ));
-        timeline.setCycleCount(1); // Execute the event only once
-        timeline.play(); // Start the timeline
+        showMessage("User Added Successfully !!!", "-fx-text-fill: green;");
     }
     
     @FXML
-    private void handleForgotPassword(){
+    private void handleForgotPassword() {
     	Stage primaryStage = new Stage();
     	primaryStage.setTitle("Forgot Password");
 
         // Email field
-        Label emailLabel = new Label("Email");
+    	Label alert = new Label("* Indicates Mandatory Fields");
+    	alert.setStyle("-fx-font-weight: bold; -fx-font-size: 12px;");
+    	
+        Label emailLabel = new Label("Email*");
         emailLabel.setStyle("-fx-font-weight: bold;");
         TextField emailField1 = new TextField();
         emailField1.setPromptText("Enter your Email");
 
         // New Password field
-        Label newPasswordLabel = new Label("New Password");
+        Label newPasswordLabel = new Label("New Password*");
         newPasswordLabel.setStyle("-fx-font-weight: bold;");
         PasswordField newPasswordField = new PasswordField();
         newPasswordField.setPromptText("New Password");
@@ -272,7 +271,7 @@ public class LoginViewController {
                               "-fx-font-size: 12px; " +
                               "-fx-cursor: hand;");
         
-        updatePasswordButton.setOnAction(e -> handleUpdatePassword());
+        updatePasswordButton.setOnAction(e -> handleUpdatePassword(emailField1, newPasswordField, e));
         cancelButton.setOnAction(e -> primaryStage.close());
         
         // Layout for Forgot Password form
@@ -281,27 +280,58 @@ public class LoginViewController {
         gridPane.setVgap(10);
         gridPane.setHgap(10);
 
-        gridPane.add(emailLabel, 0, 1);
-        gridPane.add(emailField1, 1, 1);
-        gridPane.add(newPasswordLabel, 0, 3);
-        gridPane.add(newPasswordField, 1, 3);
+        gridPane.add(alert, 0, 1);
+        gridPane.add(emailLabel, 0, 3);
+        gridPane.add(emailField1, 1, 3);
+        gridPane.add(newPasswordLabel, 0, 5);
+        gridPane.add(newPasswordField, 1, 5);
         
         HBox buttonBox = new HBox(10, updatePasswordButton, cancelButton);
         buttonBox.setPadding(new Insets(10, 0, 0, 0));
-        gridPane.add(buttonBox, 1, 5);
+        gridPane.add(buttonBox, 1, 7);
 
         // Create a VBox for the entire form
         VBox vbox = new VBox(10, gridPane);
         vbox.setPadding(new Insets(20));
 
-        Scene scene = new Scene(vbox, 400, 300);
+        Scene scene = new Scene(vbox, 500, 300);
         primaryStage.setResizable(false);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
     
-    private void handleUpdatePassword() {
-    	//Write code for Update User Password
+    private void handleUpdatePassword(TextField emailField, TextField Password,  javafx.event.ActionEvent event) {
+    	String email = emailField.getText();
+        String password = Password.getText();
+        
+        User userFound = userRepository.findByEmail(email);
+        if(userFound == null) {
+        	Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            stage.close();
+            
+            showMessage("User Not Found !!!", "-fx-text-fill: red;");
+            return;
+        }
+        
+        userFound.setPassword(password);
+        userRepository.save(userFound);
+        
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        stage.close();
+        
+        showMessage("Password Updated Successfully !!!", "-fx-text-fill: green;");
     }
     
+    private void showMessage(String message, String style) {
+        userMessage.setText(message);
+        userMessage.setStyle(style);
+        userMessage.setVisible(true);
+
+        Timeline timeline = new Timeline(new KeyFrame(
+            Duration.millis(2000),
+            event -> userMessage.setVisible(false)
+        ));
+        timeline.setCycleCount(1);
+        timeline.play();
+    }
 }
