@@ -17,7 +17,7 @@
 		    </Label>
 		    
 		    <Pane HBox.hgrow="ALWAYS"/>
-		    <Button text="View Admin Profile" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 15px; -fx-cursor: hand;">
+		    <Button text="View Admin Profile" onAction="#handleViewAdminProfile" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 15px; -fx-cursor: hand;">
 		        <HBox.margin>
 		            <Insets top="5" right="5" bottom="5" left="5"/>
 		        </HBox.margin>
