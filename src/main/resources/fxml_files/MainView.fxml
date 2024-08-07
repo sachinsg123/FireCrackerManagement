@@ -79,7 +79,7 @@
             <HBox spacing="10">
                 <Label text="Welcome to the Dashboard!" style="-fx-font-size: 25px;" />
             </HBox>
-            <ListView fx:id="listView" />
+           
         </VBox>
     </center>
 </BorderPane>

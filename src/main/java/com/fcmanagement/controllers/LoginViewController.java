@@ -217,7 +217,7 @@ public class LoginViewController {
         user.setMobile(mobile);
         user.setPassword(password);
 
-        //userRepository.save(user);
+        userRepository.save(user);
         //Provide feedback to the user (e.g., display a success message)
         
         // Close the current stage
