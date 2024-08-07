@@ -12,12 +12,11 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fcmanagement.controllers.LoginViewController" stylesheets="@style.css">
+<BorderPane stylesheets="@style.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/22" fx:controller="com.fcmanagement.controllers.LoginViewController">
     <!-- Top Header -->
     <top>
-        <HBox style="-fx-background-color: #2E3A4F;" alignment="CENTER">
+        <HBox alignment="CENTER" style="-fx-background-color: #2E3A4F;">
             <StackPane styleClass="rounded-image">
                 <ImageView fitHeight="30" fitWidth="30">
                     <image>
@@ -25,21 +24,21 @@
                     </image>
                 </ImageView>
                 <HBox.margin>
-                    <Insets left="55"/>
+                    <Insets left="55" />
                 </HBox.margin>
             </StackPane>
 
-            <Label text="A2Z IT HUB" style="-fx-text-fill: white; -fx-font-size: 30px;">
+            <Label style="-fx-text-fill: white; -fx-font-size: 30px;" text="A2Z IT HUB">
                 <HBox.margin>
-                    <Insets left="15"/>
+                    <Insets left="15" />
                 </HBox.margin>
             </Label>
 
             <Region HBox.hgrow="ALWAYS" />
 
-            <Button text="Create Account" onAction="#handleCreateAccount" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-cursor: hand;">
+            <Button onAction="#handleCreateAccount" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-cursor: hand;" text="Create Account">
                 <HBox.margin>
-                    <Insets top="5" right="55" bottom="5" left="5"/>
+                    <Insets bottom="5" left="5" right="55" top="5" />
                 </HBox.margin>
             </Button>
         </HBox>
@@ -47,33 +46,33 @@
 
     <!-- Main Content Area -->
     <center>
-        <VBox spacing="20" alignment="CENTER" styleClass="outer-border" >
+        <VBox alignment="CENTER" spacing="20" styleClass="outer-border">
         	<Label fx:id="userMessage" styleClass="userMessage" />
-            <Label text="LOGIN" styleClass="welcome-label" />
+            <Label prefHeight="18.0" prefWidth="112.0" styleClass="welcome-label" text="LOGIN" />
             
             <HBox spacing="10" styleClass="form-field">
-                <Label text="Email:" styleClass="form-label"/>
-                <TextField fx:id="emailField" promptText="Enter your Email" styleClass="input-field"/>
+                <Label prefHeight="18.0" prefWidth="95.0" styleClass="form-label" text="Email:" />
+                <TextField fx:id="emailField" promptText="Enter your Email" styleClass="input-field" />
             </HBox>
             
             <HBox spacing="10" styleClass="form-field">
-                <Label text="Password:" styleClass="form-label"/>
-                <PasswordField fx:id="passwordField" promptText="Enter your password" styleClass="input-field"/>
+                <Label prefHeight="18.0" prefWidth="95.0" styleClass="form-label" text="Password:" />
+                <PasswordField fx:id="passwordField" promptText="Enter your password" styleClass="input-field" />
             </HBox>
             
-            <HBox alignment="CENTER">
-	            <Button text="Login" onAction="#handleLogin" styleClass="login-button" style="-fx-cursor: hand;">
+            <HBox alignment="CENTER" prefHeight="74.0" prefWidth="374.0">
+	            <Button onAction="#handleLogin" style="-fx-cursor: hand;" styleClass="login-button" text="Login">
 		            <HBox.margin>
-	                    <Insets top="0" right="0" bottom="0" left="0"/>
+	                    <Insets bottom="0" left="0" right="0" top="0" />
 	                </HBox.margin>
 	            </Button>
-	            <Button text="Forgot Password" onAction="#handleForgotPassword" styleClass="login-button" style="-fx-cursor: hand;">
+	            <Button onAction="#handleForgotPassword" style="-fx-cursor: hand;" styleClass="login-button" text="Forgot Password">
 		            <HBox.margin>
-	                    <Insets top="0" right="0" bottom="0" left="15"/>
+	                    <Insets bottom="0" left="15" right="0" top="0" />
 	                </HBox.margin>
 	            </Button>
             </HBox>
-            <Label fx:id="messageLabel" styleClass="message-label"/>
+            <Label fx:id="messageLabel" styleClass="message-label" />
         </VBox>
     </center>
 </BorderPane>

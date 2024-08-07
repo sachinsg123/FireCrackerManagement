@@ -226,7 +226,7 @@ public class LoginViewController {
         user.setPassword(password);
 
         userRepository.save(user);
-        
+
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage.close();
 
