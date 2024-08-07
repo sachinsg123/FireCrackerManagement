@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<!-- <AnchorPane xmlns:fx="http://javafx.com/fxml/1"> -->
+
+<BorderPane prefHeight="885.0" prefWidth="1356.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+    <!-- Top Header -->
+    <top>
+        <HBox alignment="CENTER" prefHeight="48.0" prefWidth="1341.0" style="-fx-background-color: #2E3A4F;">
+            <Label style="-fx-text-fill: white; -fx-font-size: 30px;" text="PRODUCT LIST" />
+        </HBox>
+    </top>
+    <center>
+        <VBox spacing="10" style="-fx-padding: 20;">
+            <!-- Table View -->
+            <TableView fx:id="productTable" prefHeight="798.0" prefWidth="1351.0">
+                <columns>
+                    <TableColumn fx:id="productNameColumn" prefWidth="231.19997787475586" text="Product Name">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="productName" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="productPriceColumn" prefWidth="272.00001525878906" text="Product Price">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="productPrice" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="productQuantityColumn" prefWidth="288.7999267578125" text="Product Quantity">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="productQuantity" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="productUnitColumn" prefWidth="310.4000244140625" text="Product Unit">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="productUnit" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="productSizeColumn" prefWidth="224.7999267578125" text="Product Size">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="productSize" />
+                        </cellValueFactory>
+                    </TableColumn>
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+</BorderPane>
