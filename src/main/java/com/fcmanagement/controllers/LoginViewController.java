@@ -5,24 +5,22 @@ import java.io.IOException;
 import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
 import com.fcmanagement.model.User;
 import com.fcmanagement.repositories.UserRepository;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -33,16 +31,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
-import javafx.stage.Popup;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-@Component
+@Controller
 public class LoginViewController {
-
+	
 	@Autowired
 	private UserRepository userRepository;
 	
@@ -62,23 +58,31 @@ public class LoginViewController {
     private void handleLogin() {
         String email = emailField.getText();
         String password = passwordField.getText();
-        
-        User user = userRepository.findByEmail(email);
-        if(user == null) {
-        	messageLabel.setText("User Not Found !!!");
+
+        if (userRepository == null) {
+            messageLabel.setText("System error: UserRepository not initialized");
             messageLabel.setStyle("-fx-text-fill: red;");
+            System.err.println("UserRepository is null in LoginViewController");
+            return;
         }
-        
+
+        User user = userRepository.findByEmail(email);
+        if (user == null) {
+            messageLabel.setText("User Not Found !!!");
+            messageLabel.setStyle("-fx-text-fill: red;");
+            return;
+        }
+
         if (user.getPassword().equals(password)) {
             messageLabel.setText("Login successful!");
             messageLabel.setStyle("-fx-text-fill: green;");
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml_files/MainView.fxml"));
-                Parent dashbord = loader.load();
-                
+                Parent dashboard = loader.load();
+
                 Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
                 Stage stage = (Stage) emailField.getScene().getWindow();
-                Scene scene = new Scene(dashbord, primaryScreenBounds.getWidth(), primaryScreenBounds.getHeight());
+                Scene scene = new Scene(dashboard, primaryScreenBounds.getWidth(), primaryScreenBounds.getHeight());
                 stage.setScene(scene);
                 stage.show();
             } catch (IOException e) {
@@ -224,7 +228,8 @@ public class LoginViewController {
         user.setEmail(email);
         user.setMobile(mobile);
         user.setPassword(password);
-
+        user.setStatus("Active");
+        
         userRepository.save(user);
 
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();

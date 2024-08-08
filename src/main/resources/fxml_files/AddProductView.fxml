@@ -8,12 +8,14 @@
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane prefHeight="885.0" prefWidth="1356.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/22" fx:controller="com.fcmanagement.controllers.MainViewController">
-	<!-- Top Header -->
+	
 	<top>
-		<HBox alignment="CENTER" prefHeight="48.0" prefWidth="1341.0" style="-fx-background-color: #2E3A4F;">
-            <Label style="-fx-text-fill: white; -fx-font-size: 30px;" text="ADD PRODUCT" />
-        </HBox>
-	</top>
+     	<fx:include source="TopHeader.fxml"/>
+  	</top>
+  
+  	<left>
+      	<fx:include source="Sidebar.fxml"/>
+  	</left>
 
 	<!-- Main Content Area -->
 	 <center>
