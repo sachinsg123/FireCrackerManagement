@@ -12,12 +12,21 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+
+import com.fcmanagement.model.Product;
+import com.fcmanagement.repositories.ProductRepository;
+
 import javafx.scene.Node;
 import javafx.event.ActionEvent;
 
 @Controller
 public class MainViewController {
+	
+	@Autowired
+	private ProductRepository productRepo;
 
 	@FXML
 	private ListView<String> listView;
@@ -110,10 +119,13 @@ public class MainViewController {
 		String name = productNameField.getText();
 		String price=productPriceField.getText();
 		String quantity=productQuantityField.getText();
-		String text=productUnitField.getText();
+		String unit=productUnitField.getText();
 		String size=productSizeField.getText();
 		
-		System.out.println("Product Saves >> "+ name + price + quantity + text + size);
+		System.out.println("Product Saves >> "+ name + price + quantity + unit + size);
+		
+		Product product = new Product(1, name, price, quantity, unit, size);
+		productRepo.save(product);
 		
 		productNameField.clear();
 		productPriceField.clear();
@@ -122,6 +134,21 @@ public class MainViewController {
 		productSizeField.clear();
 		
 	 }
+	
+	//Sale Controller
+		@FXML
+		private void handleNewSale(ActionEvent event) {
+			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			stage.close();
+			System.out.println("New Sale clicked by Younus");
+			
+		}
+
+		@FXML
+		private void handleSaleHistory() {
+			System.out.println("Sale History clicked");
+			// Add your logic here
+		}
 	
 	@FXML
 	private void handleLogout(ActionEvent event) {
@@ -197,18 +224,6 @@ public class MainViewController {
 	@FXML
 	private void handlePurchaseList() {
 		System.out.println("Purchase List clicked");
-		// Add your logic here
-	}
-
-	@FXML
-	private void handleNewSale() {
-		System.out.println("New Sale clicked");
-		// Add your logic here
-	}
-
-	@FXML
-	private void handleSaleHistory() {
-		System.out.println("Sale History clicked");
 		// Add your logic here
 	}
 
