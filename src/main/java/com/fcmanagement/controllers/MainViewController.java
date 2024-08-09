@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -14,10 +15,13 @@ import java.io.IOException;
 import java.net.URL;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
-import com.fcmanagement.model.Product;
-import com.fcmanagement.repositories.ProductRepository;
+import com.fcmanagement.model.User;
+import com.fcmanagement.repositories.UserRepository;
+
 
 import javafx.scene.Node;
 import javafx.event.ActionEvent;
@@ -28,8 +32,29 @@ public class MainViewController {
 	@Autowired
 	private ProductRepository productRepo;
 
+	@Autowired
+	private UserRepository userRepository;
+	
 	@FXML
 	private ListView<String> listView;
+	
+	@FXML
+    private ImageView userImageView;
+
+    @FXML
+    private TextField companyNameLable;
+
+    @FXML
+    private TextField userNameInput;
+
+    @FXML
+    private TextField mobileInput;
+
+    @FXML
+    private TextField emailInput;
+
+    @FXML
+    private TextField passwordInput;
 
 	@FXML
 	private TextField productNameField;
@@ -49,7 +74,7 @@ public class MainViewController {
 	@FXML
 	private BorderPane mainBorderPane;
 
-  @FXML
+	@FXML
     private void handleViewAdminProfile(ActionEvent event) {
     	// Close the current stage
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -77,16 +102,24 @@ public class MainViewController {
   
 	// Product Controller- Created by Younus
 	@FXML
-	private void handleAddProduct() {
+	private void handleAddProduct(ActionEvent event) {
+		// Close the current stage
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        stage.close();
+        
 		try {
+			Stage primaryStage = new Stage();
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml_files/AddProductView.fxml"));
 			Parent addProductPage = loader.load();
 
 			Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
-			Stage stage = new Stage();
 			Scene scene = new Scene(addProductPage, primaryScreenBounds.getWidth(), primaryScreenBounds.getHeight());
-			stage.setScene(scene);
-			stage.show();
+			primaryStage.setTitle("FireCracker Desktop Application");
+			primaryStage.setScene(scene);
+		    primaryStage.setWidth(primaryScreenBounds.getWidth());
+		    primaryStage.setHeight(primaryScreenBounds.getHeight());
+		    primaryStage.setMaximized(true);
+			primaryStage.show();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -176,13 +209,7 @@ public class MainViewController {
 			e.printStackTrace();
 		}
 	}
-
-//	@FXML
-//	public void initialize() {
-//		// Initialize your UI components or set up event listeners
-//		listView.getItems().addAll("Item 1", "Item 2", "Item 3");
-//	}
-
+	
 	@FXML
 	private void handleDashboardButton() {
 		loadNewScene("/fxml_files/MainView.fxml");

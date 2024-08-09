@@ -27,16 +27,16 @@ public class MainApplication extends Application {
 	private ConfigurableApplicationContext springContext;
 
 	@Override
-
 	public void init() throws Exception {
 		springContext = new SpringApplicationBuilder(FireCrackerManagementApplication.class)
 				.properties("server.port = 8087").run();
 	}
 
 	@Override
-	public void start(Stage primaryStage) throws Exception {
+	public void start(Stage stage) throws Exception {
 
 		try {
+			Stage primaryStage = new Stage();
 			URL fxmlLocation = getClass().getResource("/fxml_files/LoginView.fxml");
 			FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
 			fxmlLoader.setControllerFactory(springContext::getBean);

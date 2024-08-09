@@ -20,17 +20,19 @@ public class User {
     private String email;
     private String mobile;
     private String password;
+    private String status;
     
 
     public User() {}
 
-    public User(int id, String username,String companyName, String password, String email, String mobile) {
+    public User(int id, String username,String companyName, String password, String email, String mobile, String status) {
         this.id = id;
         this.username = username;
         this.companyName = companyName;
         this.password = password;
         this.email = email;
         this.mobile = mobile;
+        this.status = status;
     }
 
     public int getId() {
@@ -79,6 +81,14 @@ public class User {
 
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	@Override
