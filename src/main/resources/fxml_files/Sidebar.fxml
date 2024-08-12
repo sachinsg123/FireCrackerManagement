@@ -22,7 +22,7 @@
 			    <!-- Navigation Items -->
 			    <VBox prefHeight="452.0" prefWidth="250.0" spacing="5">
 			        
-			        <ToggleButton alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="250.0" style="-fx-text-fill: black;" text="Dashboard">
+			        <ToggleButton onAction="#home" alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="250.0" style="-fx-text-fill: black;" text="Dashboard">
 		               <font>
 		                  <Font name="System Bold" size="18.0" />
 		               </font>
