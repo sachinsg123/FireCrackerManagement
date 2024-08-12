@@ -28,6 +28,7 @@ import com.fcmanagement.repositories.UserRepository;
 import com.fcmanagement.service.UserService;
 import com.fcmanagement.view.FxmlView;
 
+
 import javafx.scene.Node;
 import javafx.event.ActionEvent;
 
@@ -128,10 +129,13 @@ public class MainViewController implements Initializable {
 		String name = productNameField.getText();
 		String price=productPriceField.getText();
 		String quantity=productQuantityField.getText();
-		String text=productUnitField.getText();
+		String unit=productUnitField.getText();
 		String size=productSizeField.getText();
 		
-		System.out.println("Product Saves >> "+ name + price + quantity + text + size);
+		System.out.println("Product Saves >> "+ name + price + quantity + unit + size);
+		
+		Product product = new Product(1, name, price, quantity, unit, size);
+		productRepo.save(product);
 		
 		productNameField.clear();
 		productPriceField.clear();
@@ -140,6 +144,21 @@ public class MainViewController implements Initializable {
 		productSizeField.clear();
 		
 	 }
+	
+	//Sale Controller
+		@FXML
+		private void handleNewSale(ActionEvent event) {
+			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			stage.close();
+			System.out.println("New Sale clicked by Younus");
+			
+		}
+
+		@FXML
+		private void handleSaleHistory() {
+			System.out.println("Sale History clicked");
+			// Add your logic here
+		}
 	
 	@FXML
 	private void handleLogout(ActionEvent event) {
@@ -187,18 +206,6 @@ public class MainViewController implements Initializable {
 	@FXML
 	private void handlePurchaseList() {
 		System.out.println("Purchase List clicked");
-		// Add your logic here
-	}
-
-	@FXML
-	private void handleNewSale() {
-		System.out.println("New Sale clicked");
-		// Add your logic here
-	}
-
-	@FXML
-	private void handleSaleHistory() {
-		System.out.println("Sale History clicked");
 		// Add your logic here
 	}
 
