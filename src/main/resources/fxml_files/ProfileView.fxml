@@ -30,7 +30,7 @@
 	        <GridPane hgap="50" vgap="5">
 	        	<ImageView fitHeight="200" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="2">
 	        		<image>
-                        <Image url="@/Images/MaheshPhoto.jpeg" />
+                        <Image url="@/Images/a2zimage.jpeg" />
                     </image>
 	        	</ImageView>
 	        	
