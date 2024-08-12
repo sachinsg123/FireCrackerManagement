@@ -15,25 +15,18 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="userId")
     private int id;
+	
     private String username;
-    private String companyName;
-    private String email;
-    private String mobile;
-    private String password;
-    private String status;
     
-
-    public User() {}
-
-    public User(int id, String username,String companyName, String password, String email, String mobile, String status) {
-        this.id = id;
-        this.username = username;
-        this.companyName = companyName;
-        this.password = password;
-        this.email = email;
-        this.mobile = mobile;
-        this.status = status;
-    }
+    private String companyName;
+    
+    private String email;
+    
+    private String mobile;
+    
+    private String password;
+    
+    private String status;
 
     public int getId() {
         return id;

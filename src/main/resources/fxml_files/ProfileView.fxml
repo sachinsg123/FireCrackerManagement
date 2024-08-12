@@ -1,31 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fcmanagement.controllers.MainViewController">
   
   <top>
-     <fx:include source="TopHeader.fxml"/>
+     <fx:include source="TopHeader.fxml" />
   </top>
   
   <left>
-      <fx:include source="Sidebar.fxml"/>
+      <fx:include source="Sidebar.fxml" />
   </left>
     
    <center>
@@ -34,7 +30,7 @@
 	        <GridPane hgap="50" vgap="5">
 	        	<ImageView fitHeight="200" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="2">
 	        		<image>
-                        <Image url="@/Images/MaheshPhoto.jpeg" />
+                        <Image url="@/Images/a2zimage.jpeg" />
                     </image>
 	        	</ImageView>
 	        	
@@ -52,30 +48,40 @@
       	        <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Password:" GridPane.rowIndex="7" />
    	            <PasswordField prefHeight="35.0" prefWidth="251.0" GridPane.rowIndex="8" />
             
-            <columnConstraints>
-               <ColumnConstraints />
-               <ColumnConstraints />
-               <ColumnConstraints />
-               <ColumnConstraints />
-               <ColumnConstraints />
-               <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
-               <ColumnConstraints />
-               <ColumnConstraints />
-               <ColumnConstraints />
-            </columnConstraints>
-            <rowConstraints>
-               <RowConstraints />
-               <RowConstraints />
-               <RowConstraints />
-               <RowConstraints minHeight="10.0" prefHeight="30.0" />
-               <RowConstraints minHeight="10.0" prefHeight="30.0" />
-               <RowConstraints minHeight="10.0" prefHeight="30.0" />
-               <RowConstraints minHeight="10.0" prefHeight="30.0" />
-               <RowConstraints minHeight="10.0" prefHeight="30.0" />
-               <RowConstraints minHeight="10.0" prefHeight="30.0" />
-               <RowConstraints minHeight="10.0" prefHeight="30.0" />
-            </rowConstraints>
+	            <columnConstraints>
+	               <ColumnConstraints />
+	               <ColumnConstraints />
+	               <ColumnConstraints />
+	               <ColumnConstraints />
+	               <ColumnConstraints />
+	               <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
+	               <ColumnConstraints />
+	               <ColumnConstraints />
+	               <ColumnConstraints />
+	            </columnConstraints>
+	            <rowConstraints>
+	               <RowConstraints />
+	               <RowConstraints />
+	               <RowConstraints />
+	               <RowConstraints minHeight="10.0" prefHeight="30.0" />
+	               <RowConstraints minHeight="10.0" prefHeight="30.0" />
+	               <RowConstraints minHeight="10.0" prefHeight="30.0" />
+	               <RowConstraints minHeight="10.0" prefHeight="30.0" />
+	               <RowConstraints minHeight="10.0" prefHeight="30.0" />
+	               <RowConstraints minHeight="10.0" prefHeight="30.0" />
+	               <RowConstraints minHeight="10.0" prefHeight="30.0" />
+	            </rowConstraints>
 	        </GridPane>
+	        <HBox alignment="CENTER" prefHeight="62.0" prefWidth="1253.0" spacing="20">
+	            <Button prefHeight="40.0" prefWidth="80.0" styleClass="button-primary" text="Update">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Button>
+	            <Button onAction="#home" prefHeight="40.0" prefWidth="80.0" styleClass="button-secondary" text="Cancel">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Button>
+        	</HBox>
 	    </VBox>
     </center>
 </BorderPane>
