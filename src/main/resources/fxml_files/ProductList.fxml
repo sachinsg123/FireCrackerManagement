@@ -11,6 +11,15 @@
 <!-- <AnchorPane xmlns:fx="http://javafx.com/fxml/1"> -->
 
 <BorderPane prefHeight="885.0" prefWidth="1356.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+    
+    <top>
+     	<fx:include source="TopHeader.fxml" />
+  	</top>
+  
+  	<left>
+      	<fx:include source="Sidebar.fxml" />
+  	</left>
+  	
     <!-- Top Header -->
     <top>
         <HBox alignment="CENTER" prefHeight="48.0" prefWidth="1341.0" style="-fx-background-color: #2E3A4F;">
@@ -20,29 +29,29 @@
     <center>
         <VBox spacing="10" style="-fx-padding: 20;">
             <!-- Table View -->
-            <TableView fx:id="productTable" prefHeight="798.0" prefWidth="1351.0">
+            <TableView fx:id="productTable" prefHeight="807.0" prefWidth="1049.0">
                 <columns>
-                    <TableColumn fx:id="productNameField" prefWidth="231.19997787475586" text="Product Name">
+                    <TableColumn fx:id="productNameField" prefWidth="212.2" text="Product Name">
                         <cellValueFactory>
                             <PropertyValueFactory property="productName" />
                         </cellValueFactory>
                     </TableColumn>
-                    <TableColumn fx:id="productPriceField" prefWidth="272.00001525878906" text="Product Price">
+                    <TableColumn fx:id="productPriceField" prefWidth="212.2" text="Product Price">
                         <cellValueFactory>
                             <PropertyValueFactory property="productPrice" />
                         </cellValueFactory>
                     </TableColumn>
-                    <TableColumn fx:id="productQuantityField" prefWidth="288.7999267578125" text="Product Quantity">
+                    <TableColumn fx:id="productQuantityField" minWidth="0.0" prefWidth="212.2" text="Product Quantity">
                         <cellValueFactory>
                             <PropertyValueFactory property="productQuantity" />
                         </cellValueFactory>
                     </TableColumn>
-                    <TableColumn fx:id="productUnitField" prefWidth="310.4000244140625" text="Product Unit">
+                    <TableColumn fx:id="productUnitField" prefWidth="212.2" text="Product Unit">
                         <cellValueFactory>
                             <PropertyValueFactory property="productUnit" />
                         </cellValueFactory>
                     </TableColumn>
-                    <TableColumn fx:id="productSizeField" prefWidth="224.7999267578125" text="Product Size">
+                    <TableColumn fx:id="productSizeField" prefWidth="212.2" text="Product Size">
                         <cellValueFactory>
                             <PropertyValueFactory property="productSize" />
                         </cellValueFactory>
