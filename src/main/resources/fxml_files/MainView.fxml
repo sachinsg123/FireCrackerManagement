@@ -18,8 +18,8 @@
     <center>
         <VBox spacing="10" style="-fx-padding: 20;">
             <HBox spacing="10">
-                <Label text="Welcome to the Dashboard!" style="-fx-font-size: 25px;" />
-            </HBox>
+                <Label text="Welcome to the Dashboard Of Billing Software !!" style="-fx-font-size: 25px;" />
+            </HBox>	
            
         </VBox>
     </center>

@@ -19,7 +19,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
+import com.fcmanagement.model.Product;
 import com.fcmanagement.model.User;
+import com.fcmanagement.repositories.ProductRepository;
 import com.fcmanagement.repositories.UserRepository;
 
 
@@ -144,29 +146,81 @@ public class MainViewController {
 	}
 
 	//Method to save the Product
+//	@FXML
+//	 private void handleSaveProduct(ActionEvent event) {
+//		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//		stage.close();
+//		
+//		String name = productNameField.getText();
+//		String price=productPriceField.getText();
+//		String quantity=productQuantityField.getText();
+//		String unit=productUnitField.getText();
+//		String size=productSizeField.getText();
+//		
+//		System.out.println("Product Saves >> "+ name + price + quantity + unit + size);
+//		
+//		Product product = new Product(1, name, price, quantity, unit, size);
+//		productRepo.save(product);
+//		
+//		productNameField.clear();
+//		productPriceField.clear();
+//		productQuantityField.clear();
+//		productUnitField.clear();
+//		productSizeField.clear();
+//		
+//	 }
+	//Handle Save Product New Controller
 	@FXML
-	 private void handleSaveProduct(ActionEvent event) {
-		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		stage.close();
-		
-		String name = productNameField.getText();
-		String price=productPriceField.getText();
-		String quantity=productQuantityField.getText();
-		String unit=productUnitField.getText();
-		String size=productSizeField.getText();
-		
-		System.out.println("Product Saves >> "+ name + price + quantity + unit + size);
-		
-		Product product = new Product(1, name, price, quantity, unit, size);
-		productRepo.save(product);
-		
-		productNameField.clear();
-		productPriceField.clear();
-		productQuantityField.clear();
-		productUnitField.clear();
-		productSizeField.clear();
-		
-	 }
+	private void handleSaveProduct(ActionEvent event) throws IOException {
+		System.out.println("SAVE Button Clicked ...");
+	    if (productNameField == null || productPriceField == null ||
+	        productQuantityField == null || productUnitField == null ||
+	        productSizeField == null) {
+	        System.err.println("One or more input fields are not initialized");
+	        return;
+	    }
+
+	    String name = this.productNameField.getText().trim();
+	    String price = this.productPriceField.getText().trim();
+	    String quantity = this.productQuantityField.getText().trim();
+	    String unit = this.productUnitField.getText().trim();
+	    String size = this.productSizeField.getText().trim();
+	    
+  
+//	    String name = productNameField.getText();
+//	    String price = productPriceField.getText();
+//	    String quantity = productQuantityField.getText();
+//	    String unit = productUnitField.getText();
+//	    String size = productSizeField.getText();
+
+	    System.out.println("Product Saved >> " + name + " " + price + " " + quantity + " " + unit + " " + size);
+
+	    Product product = new Product(1, name, price, quantity, unit, size);
+	    productRepo.save(product);
+
+	    clearFields();
+
+	    // Close the window if needed
+	    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	    stage.close();
+	}
+
+	private void clearFields() {
+	    if (productNameField != null) productNameField.clear();
+	    if (productPriceField != null) productPriceField.clear();
+	    if (productQuantityField != null) productQuantityField.clear();
+	    if (productUnitField != null) productUnitField.clear();
+	    if (productSizeField != null) productSizeField.clear();
+	}
+	
+	@FXML
+	public void initialize() {
+	    System.out.println("productNameField: " + (productNameField != null ? "initialized" : "null"));
+	    System.out.println("productPriceField: " + (productPriceField != null ? "initialized" : "null"));
+	    System.out.println("productQuantityField: " + (productQuantityField != null ? "initialized" : "null"));
+	    System.out.println("productUnitField: " + (productUnitField != null ? "initialized" : "null"));
+	    System.out.println("productSizeField: " + (productSizeField != null ? "initialized" : "null"));
+	}
 	
 	//Sale Controller
 		@FXML
