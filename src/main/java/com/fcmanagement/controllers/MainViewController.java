@@ -2,10 +2,12 @@ package com.fcmanagement.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -13,29 +15,29 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ResourceBundle;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
 import com.fcmanagement.model.Product;
+
+import com.fcmanagement.config.StageManager;
+
 import com.fcmanagement.model.User;
 import com.fcmanagement.repositories.ProductRepository;
 import com.fcmanagement.repositories.UserRepository;
+import com.fcmanagement.service.UserService;
+import com.fcmanagement.view.FxmlView;
 
 
 import javafx.scene.Node;
 import javafx.event.ActionEvent;
 
 @Controller
-public class MainViewController {
-	
-	@Autowired
-	private ProductRepository productRepo;
-
-	@Autowired
-	private UserRepository userRepository;
+public class MainViewController implements Initializable {
 	
 	@FXML
 	private ListView<String> listView;
@@ -75,56 +77,33 @@ public class MainViewController {
 
 	@FXML
 	private BorderPane mainBorderPane;
+	
+	@Autowired
+	private UserService userService;
+	
+	@Lazy
+    @Autowired
+    private StageManager stageManager;
 
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		
+	}
+	
+	@FXML
+    private void home(ActionEvent event) {
+		stageManager.switchScene(FxmlView.HOME);
+    }
+	
 	@FXML
     private void handleViewAdminProfile(ActionEvent event) {
-    	// Close the current stage
-        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        stage.close();
-
-        try {
-        	Stage primaryStage = new Stage();
-        	URL fxmlLocation = getClass().getResource("/fxml_files/ProfileView.fxml");
-			FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
-			Parent root = fxmlLoader.load();
-			Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
-		    
-		    Scene scene = new Scene(root, primaryScreenBounds.getWidth(), primaryScreenBounds.getHeight());
-			scene.getStylesheets().add(getClass().getResource("/static/style.css").toExternalForm());
-			primaryStage.setTitle("FireCracker Desktop Application");
-			primaryStage.setScene(scene);
-		    primaryStage.setWidth(primaryScreenBounds.getWidth());
-		    primaryStage.setHeight(primaryScreenBounds.getHeight());
-		    primaryStage.setMaximized(true);
-			primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+		stageManager.switchScene(FxmlView.ViewAdminProfile);
     }
   
-	// Product Controller- Created by Younus
+	//Product Controller- Created by Younus
 	@FXML
 	private void handleAddProduct(ActionEvent event) {
-		// Close the current stage
-        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        stage.close();
-        
-		try {
-			Stage primaryStage = new Stage();
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml_files/AddProductView.fxml"));
-			Parent addProductPage = loader.load();
-
-			Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
-			Scene scene = new Scene(addProductPage, primaryScreenBounds.getWidth(), primaryScreenBounds.getHeight());
-			primaryStage.setTitle("FireCracker Desktop Application");
-			primaryStage.setScene(scene);
-		    primaryStage.setWidth(primaryScreenBounds.getWidth());
-		    primaryStage.setHeight(primaryScreenBounds.getHeight());
-		    primaryStage.setMaximized(true);
-			primaryStage.show();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		stageManager.switchScene(FxmlView.AddProduct);
 	}
 	
 	@FXML
@@ -239,29 +218,7 @@ public class MainViewController {
 	
 	@FXML
 	private void handleLogout(ActionEvent event) {
-		// Close the current stage
-		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		stage.close();
-
-		try {
-			Stage primaryStage = new Stage();
-			URL fxmlLocation = getClass().getResource("/fxml_files/LoginView.fxml");
-      
-			FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
-			Parent root = fxmlLoader.load();
-			Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
-
-			Scene scene = new Scene(root, primaryScreenBounds.getWidth(), primaryScreenBounds.getHeight());
-			scene.getStylesheets().add(getClass().getResource("/static/style.css").toExternalForm());
-			primaryStage.setTitle("FireCracker Desktop Application");
-			primaryStage.setScene(scene);
-			primaryStage.setWidth(primaryScreenBounds.getWidth());
-			primaryStage.setHeight(primaryScreenBounds.getHeight());
-			primaryStage.setMaximized(true);
-			primaryStage.show();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		stageManager.switchScene(FxmlView.LOGIN);
 	}
 	
 	@FXML

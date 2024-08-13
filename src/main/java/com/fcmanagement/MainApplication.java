@@ -1,10 +1,11 @@
 package com.fcmanagement;
 
-import java.io.IOException;
-import java.net.URL;
-
+import javafx.application.Application;
+import javafx.stage.Stage;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
+
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -15,49 +16,61 @@ import javafx.scene.Scene;
 import javafx.stage.Screen;
 
 import javafx.stage.Stage;
+import com.fcmanagement.config.StageManager;
+import com.fcmanagement.view.FxmlView;
 
+
+@SpringBootApplication
 public class MainApplication extends Application {
 
-	private ConfigurableApplicationContext springContext;
+    protected ConfigurableApplicationContext springContext;
+    protected StageManager stageManager;
 
-	@Override
-	public void init() throws Exception {
-		springContext = new SpringApplicationBuilder(FireCrackerManagementApplication.class)
-				.properties("server.port = 8087").run();
-	}
+    public static void main(final String[] args) {
+        Application.launch(args);
+    }
 
-	@Override
-	public void start(Stage stage) throws Exception {
+    @Override
+    public void init() throws Exception {
+        springContext = springBootApplicationContext();
+    }
 
-		try {
-			Stage primaryStage = new Stage();
-			URL fxmlLocation = getClass().getResource("/fxml_files/LoginView.fxml");
-			FXMLLoader fxmlLoader = new FXMLLoader(fxmlLocation);
-			fxmlLoader.setControllerFactory(springContext::getBean);
-			Parent root = fxmlLoader.load();
-			Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
-		    
-		    Scene scene = new Scene(root, primaryScreenBounds.getWidth(), primaryScreenBounds.getHeight());
-			scene.getStylesheets().add(getClass().getResource("/static/style.css").toExternalForm());
-			primaryStage.setTitle("FireCracker Desktop Application");
-			primaryStage.setScene(scene);
-		    primaryStage.setWidth(primaryScreenBounds.getWidth());
-		    primaryStage.setHeight(primaryScreenBounds.getHeight());
-		    primaryStage.setMaximized(true);
-			primaryStage.show();
-		} catch (IOException e) {
-			e.printStackTrace();
-			System.err.println("Failed to load FXML file.");
-		}
-	}
+    @Override
+    public void start(Stage stage) throws Exception {
+        stageManager = springContext.getBean(StageManager.class, stage);
+        displayInitialScene();
+    }
 
-	@Override
-	public void stop() throws Exception {
-		springContext.close();
-	}
+    @Override
+    public void stop() throws Exception {
+        springContext.close();
+    }
 
-	public static void main(String[] args) {
-		launch(args);
-	}
+    /**
+     * Useful to override this method by sub-classes wishing to change the first
+     * Scene to be displayed on startup. Example: Functional tests on main
+     * window.
+     */
+    protected void displayInitialScene() {
+        stageManager.switchScene(FxmlView.LOGIN);
+    }
+
+    private ConfigurableApplicationContext springBootApplicationContext() {
+        SpringApplicationBuilder builder = new SpringApplicationBuilder(MainApplication.class);
+        String[] args = getParameters().getRaw().stream().toArray(String[]::new);
+        return builder.run(args);
+    }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
