@@ -1,10 +1,14 @@
 package com.fcmanagement.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -27,6 +31,15 @@ public class User {
     private String password;
     
     private String status;
+    
+    @OneToMany(mappedBy = "user")
+	private List<Product> products = new ArrayList<Product>();
+    
+    @OneToMany(mappedBy ="user")
+	private List<Category> categories = new ArrayList<Category>();
+    
+    @OneToMany(mappedBy ="user")
+	private List<Brand> brand = new ArrayList<Brand>();
 
     public int getId() {
         return id;

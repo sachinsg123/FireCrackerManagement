@@ -55,11 +55,29 @@ public class LoginViewController implements Initializable {
 	@Autowired
 	private UserService userService;
 	
-    @FXML
-    private TextField emailField;
+	@FXML
+    private TextField userId;
+    
+	@FXML
+    private ImageView userImageView;
 
     @FXML
-    private PasswordField passwordField;
+    private Label companyNameLable;
+    
+    @FXML
+    private TextField companyNameInput;
+
+    @FXML
+    private TextField userNameInput;
+
+    @FXML
+    private TextField mobileInput;
+    
+    @FXML
+    private TextField emailInput;
+
+    @FXML
+    private PasswordField passwordInput;
 
     @FXML
     private Label messageLabel;
@@ -73,9 +91,22 @@ public class LoginViewController implements Initializable {
     
     @Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
+    	User user = userService.authenticate();
+	    if (userNameInput == null) {
+	        System.out.println("userNameInput is null");
+	    } else {
+	    	companyNameLable.setText(user.getCompanyName());
+	        userNameInput.setText(user.getUsername());
+	        emailInput.setText(user.getEmail());
+	        mobileInput.setText(user.getMobile());
+	    }
 	}
-    
+	
+	@FXML
+    private void home(ActionEvent event) {
+		stageManager.switchScene(FxmlView.HOME);
+    }
+	
     @FXML
     private void handleLogin() throws IOException{
     	if(userService.authenticate(getUsername(), getPassword())){
@@ -87,11 +118,11 @@ public class LoginViewController implements Initializable {
     }
 	
 	public String getPassword() {
-		return passwordField.getText();
+		return passwordInput.getText();
 	}
 
 	public String getUsername() {
-		return emailField.getText();
+		return emailInput.getText();
 	}
     
     @FXML
@@ -105,24 +136,24 @@ public class LoginViewController implements Initializable {
     	
         Label usernameLabel = new Label("UserName*");
         usernameLabel.setStyle("-fx-font-weight: bold;");
-        TextField username = new TextField();
-        username.setPromptText("Enter your name");
+        userNameInput = new TextField();
+        userNameInput.setPromptText("Enter your name");
 
         Label companyNameLabel = new Label("Company Name*");
         companyNameLabel.setStyle("-fx-font-weight: bold;");
-        TextField companyName = new TextField();
-        companyName.setPromptText("Enter your Company Name");
+        companyNameInput = new TextField();
+        companyNameInput.setPromptText("Enter your Company Name");
 
         Label emailLabel = new Label("Email*");
         emailLabel.setStyle("-fx-font-weight: bold;");
-        TextField emailField = new TextField();
-        emailField.setPromptText("Enter your e-mail");
+        emailInput = new TextField();
+        emailInput.setPromptText("Enter your e-mail");
 
         Label mobileLabel = new Label("Mobile*");
         mobileLabel.setStyle("-fx-font-weight: bold;");
-        TextField mobileField = new TextField();
-        mobileField.setPromptText("Enter your mobile No");
-        mobileField.setTextFormatter(new TextFormatter<>(change -> 
+        mobileInput = new TextField();
+        mobileInput.setPromptText("Enter your mobile No");
+        mobileInput.setTextFormatter(new TextFormatter<>(change -> 
             Pattern.matches("[0-9]*", change.getText()) ? change : null));
 
         Label imageLabel = new Label("Image");
@@ -145,8 +176,8 @@ public class LoginViewController implements Initializable {
 
         Label passwordLabel = new Label("Password*");
         passwordLabel.setStyle("-fx-font-weight: bold;");
-        PasswordField password = new PasswordField();
-        password.setPromptText("Enter a Password");
+        passwordInput = new PasswordField();
+        passwordInput.setPromptText("Enter a Password");
 
         Button submitButton = new Button("Add");
         submitButton.setStyle("-fx-text-fill: black; " +
@@ -168,7 +199,7 @@ public class LoginViewController implements Initializable {
 
 
         // Submit button action
-        submitButton.setOnAction(e -> handleSubmit(username, companyName, emailField, mobileField, password, e));
+        submitButton.setOnAction(e -> handleSubmit(userNameInput, companyNameInput, emailInput, mobileInput, passwordInput, e));
 
         // Cancel button action
         cancelButton.setOnAction(e -> primaryStage.close());
@@ -181,17 +212,17 @@ public class LoginViewController implements Initializable {
 
         gridPane.add(alert, 0, 1);
         gridPane.add(usernameLabel, 0, 3);
-        gridPane.add(username, 1, 3);
+        gridPane.add(userNameInput, 1, 3);
         gridPane.add(companyNameLabel, 0, 5);
-        gridPane.add(companyName, 1, 5);
+        gridPane.add(companyNameInput, 1, 5);
         gridPane.add(emailLabel, 0, 7);
-        gridPane.add(emailField, 1, 7);
+        gridPane.add(emailInput, 1, 7);
         gridPane.add(mobileLabel, 0, 9);
-        gridPane.add(mobileField, 1, 9);
+        gridPane.add(mobileInput, 1, 9);
         gridPane.add(imageLabel, 0, 11);
         gridPane.add(uploadImageButton, 1, 11); gridPane.add(imageView, 2, 11);
         gridPane.add(passwordLabel, 0, 13);
-        gridPane.add(password, 1, 13);
+        gridPane.add(passwordInput, 1, 13);
 
         HBox buttonBox = new HBox(10, submitButton, cancelButton);
         buttonBox.setPadding(new Insets(10, 0, 0, 0));
@@ -228,11 +259,10 @@ public class LoginViewController implements Initializable {
         user.setPassword(password);
         user.setStatus("Active");
         
-        userRepository.save(user);
-
-        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        stage.close();
-
+        userService.save(user);
+        
+        stageManager.switchScene(FxmlView.LOGIN);
+        
         showMessage("User Added Successfully !!!", "-fx-text-fill: green;");
     }
     
@@ -317,12 +347,29 @@ public class LoginViewController implements Initializable {
         }
         
         userFound.setPassword(password);
-        userRepository.save(userFound);
+        userService.save(userFound);
         
-        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        stage.close();
+        stageManager.switchScene(FxmlView.LOGIN);
         
         showMessage("Password Updated Successfully !!!", "-fx-text-fill: green;");
+    }
+    
+    @FXML
+    private void updateUserProfile () {
+    	String username = userNameInput.getText();
+    	String companyname = companyNameLable.getText();
+        String email = emailInput.getText();
+        String mobile = mobileInput.getText();
+        
+        User user = userService.findByEmail(email);
+        
+        user.setUsername(username);
+        user.setCompanyName(companyname);
+        user.setEmail(email);
+        user.setMobile(mobile);
+        
+        userService.save(user);
+        showMessage("User Updated Successfully !!!", "-fx-text-fill: green;");
     }
     
     private void showMessage(String message, String style) {

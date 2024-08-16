@@ -52,12 +52,12 @@
             
             <HBox spacing="10" styleClass="form-field">
                 <Label prefHeight="18.0" prefWidth="95.0" styleClass="form-label" text="Email:" />
-                <TextField fx:id="emailField" promptText="Enter your Email" styleClass="input-field" />
+                <TextField fx:id="emailInput" promptText="Enter your Email" styleClass="input-field" />
             </HBox>
             
             <HBox spacing="10" styleClass="form-field">
                 <Label prefHeight="18.0" prefWidth="95.0" styleClass="form-label" text="Password:" />
-                <PasswordField fx:id="passwordField" promptText="Enter your password" styleClass="input-field" />
+                <PasswordField fx:id="passwordInput" promptText="Enter your password" styleClass="input-field" />
             </HBox>
             
             <HBox alignment="CENTER" prefHeight="74.0" prefWidth="374.0">

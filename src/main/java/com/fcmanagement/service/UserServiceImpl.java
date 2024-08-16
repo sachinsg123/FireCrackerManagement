@@ -15,6 +15,8 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserRepository userRepository;
 	
+	private User user1 = null;
+	
 	@Override
 	public User save(User entity) {
 		return userRepository.save(entity);
@@ -46,11 +48,19 @@ public class UserServiceImpl implements UserService {
 		if(user == null){
 			return false;
 		}else{
-			if(password.equals(user.getPassword()) && ("Active".equals(user.getStatus()))) return true;
+			if(password.equals(user.getPassword()) && ("Active".equals(user.getStatus()))) {
+				user1 = user;
+				return true;
+			}
 			else return false;
 		}
 	}
 
+	@Override
+	public User authenticate(){
+		return user1;
+	}
+	
 	@Override
 	public User findByEmail(String email) {
 		return userRepository.findByEmail(email);
