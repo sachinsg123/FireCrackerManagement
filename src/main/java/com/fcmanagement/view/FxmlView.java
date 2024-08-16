@@ -47,6 +47,17 @@ public enum FxmlView {
 		public String getFxmlFile() {
             return "/fxml_files/AddProductView.fxml";
         }
+    },
+    ProductList {
+        @Override
+		public String getTitle() {
+            return getStringFromResourceBundle("user.title");
+        }
+
+        @Override
+		public String getFxmlFile() {
+            return "/fxml_files/ProductList.fxml";
+        }
     };
     
     public abstract String getTitle();

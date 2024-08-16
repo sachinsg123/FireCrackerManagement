@@ -34,16 +34,16 @@
 	                     <font>
 	                        <Font name="System Bold" size="15.0" />
 	                     </font></Hyperlink>
-	                        <Hyperlink onAction="#handlePurchaseList" text="Product List ">
+	                        <Hyperlink text="Product List ">
 	                     <font>
 	                        <Font name="System Bold" size="15.0" />
 	                     </font></Hyperlink>
-	                  <Hyperlink ellipsisString="" onAction="#handlePurchaseBill" text="Brand">
+	                  <Hyperlink ellipsisString="" text="Brand">
 	                     <font>
 	                        <Font name="System Bold" size="15.0" />
 	                     </font>
 	                  </Hyperlink>
-	                  <Hyperlink ellipsisString="" onAction="#handlePurchaseBill" text="Category">
+	                  <Hyperlink ellipsisString="" text="Category">
 	                     <font>
 	                        <Font name="System Bold" size="15.0" />
 	                     </font>
@@ -57,12 +57,12 @@
 	               <content>
 	                  <VBox prefWidth="248.0" spacing="5">
 	                     <children>
-	                        <Hyperlink ellipsisString="" onAction="#handlePurchaseBill" text="Add Sales">
+	                        <Hyperlink ellipsisString="" text="Add Sales">
 	                           <font>
 	                              <Font name="System Bold" size="15.0" />
 	                           </font>
 	                        </Hyperlink>
-	                        <Hyperlink onAction="#handlePurchaseList" text="Sales List">
+	                        <Hyperlink text="Sales List">
 	                           <font>
 	                              <Font name="System Bold" size="18.0" />
 	                           </font>
@@ -78,12 +78,12 @@
 	               <content>
 	                  <VBox prefWidth="248.0" spacing="5">
 	                     <children>
-	                        <Hyperlink ellipsisString="" onAction="#handlePurchaseBill" text="Add Sales">
+	                        <Hyperlink ellipsisString="" text="Add Sales">
 	                           <font>
 	                              <Font name="System Bold" size="15.0" />
 	                           </font>
 	                        </Hyperlink>
-	                        <Hyperlink onAction="#handlePurchaseList" text="Sales List">
+	                        <Hyperlink text="Sales List">
 	                           <font>
 	                              <Font name="System Bold" size="18.0" />
 	                           </font>
