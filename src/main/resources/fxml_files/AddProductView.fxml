@@ -7,9 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="885.0" prefWidth="1356.0"
-	xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="com.fcmanagement.controllers.MainViewController">
+<BorderPane prefHeight="885.0" prefWidth="1356.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fcmanagement.controllers.ProductController">
 
 	<top>
 		<fx:include source="TopHeader.fxml" />
@@ -29,7 +27,7 @@
 				<Label prefHeight="26.0" prefWidth="130.0"
 					style="-fx-font-size: 16px; -fx-text-fill: #333333;"
 					text="Product Name :" />
-				<TextField fx:id="productNameField" prefHeight="34.0"
+				<TextField fx:id="productName" prefHeight="34.0"
 					prefWidth="360.0" promptText="Enter product name"
 					style="-fx-pref-width: 300px; -fx-padding: 5; -fx-font-size: 14px; -fx-border-color: #B0B0B0; -fx-border-width: 1; -fx-border-radius: 5; -fx-background-radius: 5;" />
 
@@ -37,7 +35,7 @@
 				<Label prefHeight="26.0" prefWidth="200.0"
 					style="-fx-font-size: 16px; -fx-text-fill: #333333;"
 					text="               Product Price :" />
-				<TextField fx:id="productPriceField" prefHeight="34.0"
+				<TextField fx:id="price" prefHeight="34.0"
 					prefWidth="332.0" promptText="Enter product price"
 					style="-fx-pref-width: 300px; -fx-padding: 5; -fx-font-size: 14px; -fx-border-color: #B0B0B0; -fx-border-width: 1; -fx-border-radius: 5; -fx-background-radius: 5;" />
 			</HBox>
@@ -46,14 +44,14 @@
 				<Label prefHeight="26.0" prefWidth="130.0"
 					style="-fx-font-size: 16px; -fx-text-fill: #333333;"
 					text="Product Unit :" />
-				<TextField fx:id="productQuantityField" prefHeight="33.0"
+				<TextField fx:id="quantity" prefHeight="33.0"
 					prefWidth="271.0" promptText="Enter product quantity"
 					style="-fx-pref-width: 300px; -fx-padding: 5; -fx-font-size: 14px; -fx-border-color: #B0B0B0; -fx-border-width: 1; -fx-border-radius: 5; -fx-background-radius: 5;" />
 
 				<Label prefHeight="26.0" prefWidth="200.0"
 					style="-fx-font-size: 16px; -fx-text-fill: #333333;"
 					text="              Product Quantity :" />
-				<TextField fx:id="productUnitField" prefHeight="33.0"
+				<TextField fx:id="unit" prefHeight="33.0"
 					prefWidth="310.0" promptText="Enter product unit"
 					style="-fx-pref-width: 300px; -fx-padding: 5; -fx-font-size: 14px; -fx-border-color: #B0B0B0; -fx-border-width: 1; -fx-border-radius: 5; -fx-background-radius: 5;" />
 
@@ -62,7 +60,7 @@
 				<Label prefHeight="26.0" prefWidth="256.0"
 					style="-fx-font-size: 16px; -fx-text-fill: #333333;"
 					text="                             Product Size :" />
-				<TextField fx:id="productSizeField" prefHeight="34.0"
+				<TextField fx:id="size" prefHeight="34.0"
 					prefWidth="308.0" promptText="Enter product size"
 					style="-fx-pref-width: 300px; -fx-padding: 5; -fx-font-size: 14px; -fx-border-color: #B0B0B0; -fx-border-width: 1; -fx-border-radius: 5; -fx-background-radius: 5;" />
 
