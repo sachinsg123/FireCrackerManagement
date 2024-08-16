@@ -25,6 +25,7 @@
 	<!-- Main Content Area -->
 	 <center>
         <VBox prefHeight="828.0" prefWidth="1342.0" spacing="10" style="-fx-padding: 20;">
+        	<Label fx:id="userMessage" styleClass="userMessage" />
          <children>
             <GridPane prefHeight="306.0" prefWidth="1034.0">
               <columnConstraints>
@@ -120,7 +121,7 @@
             </GridPane>
             <HBox alignment="CENTER" prefHeight="82.0" prefWidth="1034.0">
                <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="41.0" prefWidth="87.0" text="Save" textAlignment="JUSTIFY">
+                  <Button alignment="CENTER" contentDisplay="CENTER" onAction="#handleSaveProduct" mnemonicParsing="false" prefHeight="41.0" prefWidth="87.0" text="Save" textAlignment="JUSTIFY">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
