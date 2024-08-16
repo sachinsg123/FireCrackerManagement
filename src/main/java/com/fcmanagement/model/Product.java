@@ -11,6 +11,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="Product")
 public class Product {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;

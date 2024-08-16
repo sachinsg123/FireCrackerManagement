@@ -2,15 +2,12 @@ package com.fcmanagement.controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
-
 import com.fcmanagement.config.StageManager;
 import com.fcmanagement.model.Product;
 import com.fcmanagement.repositories.ProductRepository;
-
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -50,8 +47,8 @@ public class ProductController implements Initializable {
 	private ProductRepository productRepository;
 	
 	@Lazy
-    @Autowired
-    private StageManager stageManager;
+  @Autowired
+  private StageManager stageManager;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -67,23 +64,23 @@ public class ProductController implements Initializable {
         String productBrand = brand.getText();
         String productUnit = unit.getText();
         String productSize = size.getText();
-        
+
         Product product = new Product();
-        
-        
-        
-        
+
+
+
+
         product.setProductName(name);
         product.setPrice(productPrice);
         product.setQuantity(productQuantity);
-//        product.setCategory(category);
-//        product.setBrand(brand);
+  //        product.setCategory(category);
+  //        product.setBrand(brand);
         product.setUnit(productUnit);
         product.setSize(productSize);
-        
-//        productRepository.save(product);
-        
-        
+
+  //        productRepository.save(product);
+
+
         productName.clear();
         price.clear();
         quantity.clear();
@@ -91,7 +88,7 @@ public class ProductController implements Initializable {
         brand.clear();
         size.clear();
         unit.clear();
-        
+
         showMessage("Product Added Successfully !!!", "-fx-text-fill: green;");
     }
     
@@ -99,7 +96,7 @@ public class ProductController implements Initializable {
         userMessage.setText(message);
         userMessage.setStyle(style);
         userMessage.setVisible(true);
-
+      
         Timeline timeline = new Timeline(new KeyFrame(
             Duration.millis(2000),
             event -> userMessage.setVisible(false)

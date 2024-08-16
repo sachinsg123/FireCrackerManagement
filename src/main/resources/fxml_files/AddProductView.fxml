@@ -13,7 +13,6 @@
 <?import javafx.scene.text.Font?>
 
 <BorderPane prefHeight="885.0" prefWidth="1356.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fcmanagement.controllers.ProductController">
-	
 	<top>
      	<fx:include source="TopHeader.fxml" />
   	</top>
@@ -131,5 +130,4 @@
          </children>
         </VBox>
     </center>
-	
 </BorderPane>

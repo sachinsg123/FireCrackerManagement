@@ -25,8 +25,8 @@ public class MainViewController implements Initializable {
 	private UserService userService;
 	
 	@Lazy
-    @Autowired
-    private StageManager stageManager;
+  @Autowired
+  private StageManager stageManager;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -34,14 +34,14 @@ public class MainViewController implements Initializable {
 	}
 	
 	@FXML
-    private void home(ActionEvent event) {
-		stageManager.switchScene(FxmlView.HOME);
-    }
+  private void home(ActionEvent event) {
+  stageManager.switchScene(FxmlView.HOME);
+  }
 	
 	@FXML
-    private void handleViewAdminProfile(ActionEvent event) {
-		stageManager.switchScene(FxmlView.ViewAdminProfile);
-    }
+  private void handleViewAdminProfile(ActionEvent event) {
+  stageManager.switchScene(FxmlView.ViewAdminProfile);
+  }
 
 	@FXML
 	private void handleAddProduct() {

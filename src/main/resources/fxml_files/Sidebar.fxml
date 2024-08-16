@@ -18,7 +18,7 @@
 	 <!-- Left Sidebar -->
 	<left>
 		<ScrollPane fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: #3A4D6D;">
-		    <VBox prefHeight="633.0" prefWidth="280.0" spacing="10" style="-fx-background-color: #2E3A4F; -fx-padding: 15;" xmlns="http://javafx.com/javafx/22.0.2" xmlns:fx="http://javafx.com/fxml/1">
+		    <VBox prefHeight="720.0" prefWidth="280.0" spacing="10" style="-fx-background-color: #2E3A4F; -fx-padding: 15;" xmlns="http://javafx.com/javafx/22.0.2" xmlns:fx="http://javafx.com/fxml/1">
 			    <!-- Navigation Items -->
 			    <VBox prefHeight="452.0" prefWidth="250.0" spacing="5">
 			        
@@ -33,11 +33,13 @@
 	                        <Hyperlink ellipsisString="" onAction="#handleAddProduct" text="Add Product">
 	                     <font>
 	                        <Font name="System Bold" size="15.0" />
-	                     </font></Hyperlink>
+	                     </font>
+                   </Hyperlink>
 	                        <Hyperlink text="Product List ">
 	                     <font>
 	                        <Font name="System Bold" size="15.0" />
-	                     </font></Hyperlink>
+	                     </font>
+                    </Hyperlink>
 	                  <Hyperlink ellipsisString="" text="Brand">
 	                     <font>
 	                        <Font name="System Bold" size="15.0" />
@@ -64,7 +66,7 @@
 	                        </Hyperlink>
 	                        <Hyperlink text="Sales List">
 	                           <font>
-	                              <Font name="System Bold" size="18.0" />
+	                              <Font name="System Bold" size="15.0" />
 	                           </font>
 	                        </Hyperlink>
 	                     </children>
@@ -85,7 +87,7 @@
 	                        </Hyperlink>
 	                        <Hyperlink text="Sales List">
 	                           <font>
-	                              <Font name="System Bold" size="18.0" />
+	                              <Font name="System Bold" size="15.0" />
 	                           </font>
 	                        </Hyperlink>
 	                     </children>
